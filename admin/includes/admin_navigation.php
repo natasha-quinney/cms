@@ -53,10 +53,10 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Catagories </a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Comments </a>
                     </li>
                     <li>
