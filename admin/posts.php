@@ -25,32 +25,42 @@
 //                                $update_sel_cat_id = $_GET['update'];
 //                                include "includes/update_categories.php";
 //                            }  
-                       
+//                        include "includes/view_posts.php";
                         ?>
                         
-                       <table class="table table-bordered table-hover">
-                           <thead>
-                               <tr>
-                                   <th>ID</th>
-                                   <th>Title</th>
-                                   <th>Author</th>
-                                   <th>Date</th>
-                                   <th>Category</th>
-                                   <th>Status</th>
-                                   <th>Image</th>
-                                   <th>Tags</th>
-                                   <th>Comments</th>
-                               </tr>
-                           </thead>
-                            <tbody>
+
+                        <?php
+                        
+                        if(isset($_GET['source'])){
                             
-                            <?php find_all_posts(); ?>
-
-                       </tbody>
-                       </table>
-
-
-
+                            $source = $_GET['source'];
+                        }
+                        
+                        switch($source){
+                                
+                                case 'view_post';
+                                include "includes/view_posts.php";
+                                break;
+                                
+                                case 'add_post';
+                                include "includes/add_posts.php";
+                                break;
+                                
+                                case 'delete_post';
+                                echo "";
+                                break;
+                                
+                            default:
+                                include "includes/view_posts.php";
+                                
+                                
+                        }
+                        
+                        
+                        
+                        
+                        
+                        ?>
                     </div>
                 </div>
                 <!-- /.row -->
