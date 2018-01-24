@@ -46,8 +46,8 @@
                                 include "includes/add_posts.php";
                                 break;
                                 
-                                case 'delete_post';
-                                echo "";
+                                case 'edit_post';
+                                include "includes/edit_posts.php";
                                 break;
                                 
                             default:
@@ -55,11 +55,6 @@
                                 
                                 
                         }
-                        
-                        
-                        
-                        
-                        
                         ?>
                     </div>
                 </div>

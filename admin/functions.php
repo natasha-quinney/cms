@@ -64,27 +64,35 @@ function insert_categories(){
     }
 }
 
-//function insert_posts(){
-//    
-//    global $connection;
-//                            
-//    if(isset($_POST['submit'])){
-//
-//        $cat_title = $_POST['cat_title'];
-//
-//        if($cat_title == "" || empty($cat_title)){
-//            echo "This field should not be left empty.";
-//        } else {
-//            $query = "INSERT INTO categories(cat_title) ";
-//            $query .= "VALUE('$cat_title')";
-//
-//            $add_category_query = mysqli_query($connection, $query);
-//
-//            if(!$add_category_query){
-//                die('ADD CATEGORY FAILED ' . mysqli_error($connection));
-//            }
-//        }
-//    }
+    function insert_posts(){
+        
+        global $connection;
+            
+        if(isset($_POST['create_post'])){
+    
+            $post_title = $_POST['post_title'];
+            $post_author = $_POST['post_author'];
+            $post_date = date('d-m-y');
+            $post_category = $_POST['post_category'];
+            $post_status = $_POST['post_status'];
+            $post_image = $_FILES['post_image']['name'];
+            $post_image_temp = $_FILES['post_image']['tmp_name'];
+            $post_tags = $_POST['post_tags'];
+            $post_content = $_POST['post_content'];
+            $post_comment_count = 4;
+
+            move_uploaded_file($post_image_temp, "../images/$post_image" );
+
+            $query = "INSERT INTO posts(post_title, post_author, post_date, post_cat_id, post_status, post_image, post_tags, post_content, post_comment_count) ";
+
+            $query .= "VALUES('{$post_title}', '{$post_author}', now(), '{$post_category}', '{$post_status}', '{$post_image}', '{$post_tags}', '{$post_content}', '{$post_comment_count}' ) ";
+
+            $create_post_query = mysqli_query($connection, $query);
+
+        confirm($create_post_query);
+
+        }       
+    }
     
         function find_all_posts(){
         
@@ -113,8 +121,8 @@ function insert_categories(){
             echo "<td><img width='100' src='../images/$post_image' alt='image'></td>";
             echo "<td>{$post_tags}</td>";
             echo "<td>{$post_comment_count}</td>";
-            echo "<td><a href='categories.php?delete={$post_id}'>Delete</a></td>";
-            echo "<td><a href='categories.php?update={$post_id}'>Edit</a></td>";
+            echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
+//            echo "<td><a href='categories.php?update={$post_id}'>Edit</a></td>";
             echo "</tr>";
         }
     }

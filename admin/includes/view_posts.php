@@ -15,6 +15,7 @@
     <tbody>
 
     <?php find_all_posts(); ?>
+    <?php delete_posts(); ?>
 
 </tbody>
 </table>

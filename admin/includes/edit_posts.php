@@ -1,8 +1,5 @@
-<?php 
-
-insert_posts();
-
-?>
+<?php insert_posts(); ?>
+ 
   <form action="" method = "post" enctype="multipart/form-data">
    
     <div class="form-group">
