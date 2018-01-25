@@ -182,7 +182,7 @@ function insert_categories(){
             $post_comment_id = $row['post_id'];
             $post_title = $row['post_title'];
             
-            echo "<td>{$post_title}</td>";
+            echo "<td><a href='../post.php?p_id=$post_comment_id'>{$post_title}</a></td>";
                 
             }
             

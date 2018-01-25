@@ -38,17 +38,17 @@
                         
                         switch($source){
                                 
-                                case 'view_comments';
-                                include "includes/view_comments.php";
-                                break;
+//                                case 'view_comments';
+//                                include "includes/view_comments.php";
+//                                break;
                                 
-                                case 'add_post';
-                                include "includes/add_posts.php";
-                                break;
-                                
-                                case 'edit_post';
-                                include "includes/edit_posts.php";
-                                break;
+//                                case 'add_post';
+//                                include "includes/add_posts.php";
+//                                break;
+//                                
+//                                case 'edit_post';
+//                                include "includes/edit_posts.php";
+//                                break;
                                 
                             default:
                                 include "includes/view_comments.php";
