@@ -150,4 +150,48 @@ function insert_categories(){
                                     }
     }
 
+        function find_all_comments(){
+        
+        global $connection;
+    
+        $query = "SELECT * FROM comments";
+        $select_admin_comment_query = mysqli_query($connection,$query);   
+
+        while($row = mysqli_fetch_assoc($select_admin_comment_query)){
+            $comment_id = $row['comment_id'];
+            $comment_post_id = $row['comment_post_id'];
+            $comment_title = $row['comment_title'];
+            $comment_author = $row['comment_author'];
+            $comment_email = $row['comment_email'];
+            $comment_content = $row['comment_content'];
+            $comment_status = $row['comment_status'];
+            $comment_date = $row['comment_date'];
+            
+            echo "<tr>";
+            echo "<td>{$comment_id}</td>";
+            echo "<td>{$comment_author}</td>";
+            echo "<td>{$comment_title}</td>";
+            echo "<td>{$comment_content}</td>";
+            echo "<td>{$comment_email}</td>";
+            echo "<td>{$comment_status}</td>";
+
+            $query = "SELECT * FROM posts WHERE post_id = {$comment_post_id} ";
+            $sel_post_comment_query = mysqli_query($connection,$query);
+
+            while($row = mysqli_fetch_assoc($sel_post_comment_query)){
+            $post_comment_id = $row['post_id'];
+            $post_title = $row['post_title'];
+            
+            echo "<td>{$post_title}</td>";
+                
+            }
+            
+            echo "<td>{$comment_date}</td>";
+            echo "<td><a href='comments.php?source=approve_comment&com_id={$comment_id}'>Approve</a></td>";
+            echo "<td><a href='comments.php?source=unapprove_commentt&com_id={$comment_id}'>Unapprove</a></td>";
+            echo "<td><a href='comments.php?delete={$comment_id}'>Delete</a></td>";
+            echo "</tr>";
+        }
+    }
 ?>
+
