@@ -17,7 +17,10 @@
     <tbody>
 
     <?php find_all_comments(); ?>
-    <?php //delete_posts(); ?>
+    <?php approve_comments(); ?>
+    <?php unapprove_comments(); ?>
+    <?php delete_comments(); ?>
+    
 
 </tbody>
 </table>
