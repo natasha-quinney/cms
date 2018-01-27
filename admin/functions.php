@@ -79,7 +79,7 @@ function insert_categories(){
             $post_image_temp = $_FILES['post_image']['tmp_name'];
             $post_tags = $_POST['post_tags'];
             $post_content = $_POST['post_content'];
-            $post_comment_count = 4;
+            $post_comment_count = 0;
 
             move_uploaded_file($post_image_temp, "../images/$post_image" );
 
@@ -212,7 +212,7 @@ function insert_categories(){
 
         if(isset($_GET['unapprove'])){
             $unapprove_comment_id = $_GET['unapprove'];
-            $query = "UPDATE comments SET comment_status = 'unapprove' WHERE comment_id = {$unapprove_comment_id}" ;
+            $query = "UPDATE comments SET comment_status = 'unapproved' WHERE comment_id = {$unapprove_comment_id}" ;
             $unapprove_admin_comment_query = mysqli_query($connection,$query);
         header("Location: comments.php");
                                     }
@@ -224,7 +224,7 @@ function insert_categories(){
 
         if(isset($_GET['approve'])){
             $approve_comment_id = $_GET['approve'];
-            $query = "UPDATE comments SET comment_status = 'approve' WHERE comment_id = {$approve_comment_id}" ;
+            $query = "UPDATE comments SET comment_status = 'approved' WHERE comment_id = {$approve_comment_id}" ;
             $approve_admin_comment_query = mysqli_query($connection,$query);
         header("Location: comments.php");
                                     }
