@@ -229,5 +229,85 @@ function insert_categories(){
         header("Location: comments.php");
                                     }
     }
+
+    function insert_users(){
+        
+        global $connection;
+            
+        if(isset($_POST['create_user'])){
+    
+            $user_name = $_POST['user_name'];
+            $user_password = $_POST['user_password'];
+            $user_firstname = $_POST['user_firstname'];
+            $user_lastname = $_POST['user_lastname'];
+            $user_email = $_POST['user_email'];
+            $user_image = $_FILES['user_image']['name'];
+            $user_image_temp = $_FILES['user_image']['tmp_name'];
+            $user_role = $_POST['user_role'];
+
+            move_uploaded_file($user_image_temp, "../images/$user_image" );
+            
+            if($user_role == "select"){
+                
+                $user_role = "genin";
+                
+                
+            }
+
+            $query = "INSERT INTO users(user_name, user_password, user_firstname, user_lastname, user_email, user_image, user_role ) ";
+
+            $query .= "VALUES('{$user_name}', '{$user_password}', '{$user_firstname}', '{$user_lastname}', '{$user_email}', '{$user_image}', '{$user_role}' ) ";
+
+            $create_user_query = mysqli_query($connection, $query);
+
+        confirm($create_user_query);
+
+        }       
+    }
+
+
+        function find_all_users(){
+        
+        global $connection;
+    
+        $query = "SELECT * FROM users";
+        $select_admin_user_query = mysqli_query($connection,$query);   
+
+        while($row = mysqli_fetch_assoc($select_admin_user_query)){
+            $user_id = $row['user_id'];
+            $user_name = $row['user_name'];
+            $user_password = $row['user_password'];
+            $user_firstname = $row['user_firstname'];
+            $user_lastname = $row['user_lastname'];
+            $user_email = $row['user_email'];
+            $user_image = $row['user_image'];
+            $user_role = $row['user_role'];
+            $randSalt = $row['randSalt'];
+            
+            echo "<tr>";
+            echo "<td>{$user_id}</td>";
+            echo "<td>{$user_name}</td>";
+            echo "<td>{$user_firstname}</td>";
+            echo "<td>{$user_lastname}</td>";
+            echo "<td>{$user_email}</td>";
+//            echo "<td><img width='100' src='../images/$user_image' alt='image'></td>";
+            echo "<td>{$user_role}</td>";
+            echo "<td><a href='users.php?source=edit_user&edit={$user_id}'>Edit</a></td>";
+            echo "<td><a href='users.php?delete={$user_id}'>Delete</a></td>";
+            echo "</tr>";
+        }
+    } 
+
+    function delete_users(){
+        
+        global $connection;
+
+        if(isset($_GET['delete'])){
+            $del_user_id = $_GET['delete'];
+            $query = "DELETE FROM users WHERE user_id = {$del_user_id} ";
+            $delete_admin_user_query = mysqli_query($connection,$query);
+        header("Location: users.php");
+                                    }
+    }
 ?>
 
