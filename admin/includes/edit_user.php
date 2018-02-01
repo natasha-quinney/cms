@@ -92,12 +92,12 @@
     <div class="form-group">
        <label for="user_role">Role</label>
        <select name = "user_role">
-        <option value="select">Select User Role</option>
-        <option value="admin">Admin</option>
-        <option value="hokage">Hokage</option>
-        <option value="jonin">Jonin</option>
-        <option value="chunin">Chunin</option>
-        <option value="genin">Genin</option>
+        <option value="select"><?php echo $user_role?></option>
+        <option value="admin">admin</option>
+        <option value="hokage">hokage</option>
+        <option value="jonin">jonin</option>
+        <option value="chunin">chunin</option>
+        <option value="genin">genin</option>
         </select>
     </div>
     
