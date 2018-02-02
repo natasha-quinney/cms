@@ -49,6 +49,8 @@
                             default:
                                 include "includes/view_users.php";
                                 
+                                break;
+                                
                         }
                         ?>
                     </div>
