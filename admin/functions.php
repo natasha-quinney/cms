@@ -261,6 +261,8 @@ function insert_categories(){
             $create_user_query = mysqli_query($connection, $query);
 
         confirm($create_user_query);
+            
+            echo "User created: " . " " . "<a href='users.php?source=view_users'>View Users</a> ";
 
         }       
     }
