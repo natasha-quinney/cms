@@ -170,22 +170,24 @@
                 
                 <?php 
                 
+                    //Count number of published posts
+                    $query = "SELECT * FROM posts WHERE post_status = 'published'";
+                    $select_published_posts = mysqli_query($connection, $query);
+                    $published_post_count = mysqli_num_rows($select_published_posts);
+                
                     //Count number of draft posts
                     $query = "SELECT * FROM posts WHERE post_status = 'draft'";
                     $select_draft_posts = mysqli_query($connection, $query);
-
                     $draft_post_count = mysqli_num_rows($select_draft_posts);
                 
                     //Count number of unapproved comments
                     $query = "SELECT * FROM comments WHERE comment_status = 'unapproved'";
                     $select_unapproved_comments = mysqli_query($connection, $query);
-
                     $unapproved_comment_count = mysqli_num_rows($select_unapproved_comments);
                 
                     //Count number of non hokage users
                     $query = "SELECT * FROM users WHERE user_role != 'hokage'";
                     $select_nonhokage_users = mysqli_query($connection, $query);
-
                     $nonhokage_count = mysqli_num_rows($select_nonhokage_users);
                 
                 
@@ -203,10 +205,10 @@
                                 
                                 <?php 
                                 
-                                    $element_text = ['Active Posts', 'Draft Posts', 'Comments', 'Unapproved Comments', 'Users', 'Non-admin Users', 'Categories'];
-                                    $element_count = [$post_count, $draft_post_count, $comment_count, $unapproved_comment_count, $user_count, $nonhokage_count, $category_count];
+                                    $element_text = ['All Posts', 'Active Posts', 'Draft Posts', 'Comments', 'Pending Comments', 'Users', 'Non-admin Users', 'Categories'];
+                                    $element_count = [$post_count, $published_post_count, $draft_post_count, $comment_count, $unapproved_comment_count, $user_count, $nonhokage_count, $category_count];
                                 
-                                    for($i = 0; $i < 7; $i++){
+                                    for($i = 0; $i < 8; $i++){
                                         
                                         echo "['{$element_text[$i]}'" . "," . "{$element_count[$i]}],";
                                         

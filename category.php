@@ -20,7 +20,7 @@
                 
                 }
                 
-                    $query = "SELECT * FROM posts WHERE post_cat_id = $post_category_id";
+                    $query = "SELECT * FROM posts WHERE post_cat_id = $post_category_id AND post_status = 'published' ";
                     $select_cat_posts_query = mysqli_query($connection,$query);
                 
                        if(!$select_cat_posts_query){
@@ -59,7 +59,7 @@
                 <a href="post.php?p_id=<?php echo $post_id; ?>"><img class="img-responsive" src=images/<?php echo $post_image; ?> alt=""></a>
                 <hr>
                 <p><?php echo $post_content; ?></p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a class="btn btn-primary" href="post.php?p_id=<?php echo $post_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                 <hr>
                         

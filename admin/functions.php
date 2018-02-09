@@ -90,6 +90,8 @@ function insert_categories(){
             $create_post_query = mysqli_query($connection, $query);
 
         confirm($create_post_query);
+            
+            echo "<p class='bg-success'>Post created: " . " " . "<a href='../posts.php?source=view_post'>View All Posts</a></p><br> ";
 
         }       
     }
@@ -262,7 +264,7 @@ function insert_categories(){
 
         confirm($create_user_query);
             
-            echo "User created: " . " " . "<a href='users.php?source=view_users'>View Users</a> ";
+            echo "User created: " . " " . "<a href='users.php?source=view_users'>View Users</a><br> ";
 
         }       
     }

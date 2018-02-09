@@ -59,6 +59,8 @@
             $update_post_query = mysqli_query($connection, $query);
 
         confirm($update_post_query);
+            
+            echo "<p class='bg-success'>Post updated: " . " " . "<a href='../post.php?p_id={$edit_post_id}'>View Post</a>" . " or " . "<a href='./posts.php?source=view_post'>View All Posts</a></p><br> ";
    
         }
 
@@ -101,19 +103,31 @@
            
            ?>
            
-           
+           p
        </select>
     </div>
        
-        <div class="form-group">
-       <label for="post_status">Post Status</label>
-        <input value="<?php echo $post_status; ?>" type="text" class="form-control" name="post_status">
-    </div>
+       <div class="form-group">
+       <select name="post_status" id="">
+           <option value='<?php echo $post_status; ?>'><?php echo $post_status; ?></option>
+           
+           <?php if($post_status == "published"){
+    
+                        echo "<option value='draft'>Draft</option>";
+                            
+                    } else {
+    
+                        echo "<option value='published'>Published</option>";
+                    }
+           
+           ?>
+       </select>
+      </div>
     
     <div class="form-group">
        <label for="post_image">Post Image</label><br>
         <img width="100" src="../images/<?php echo $post_image; ?>" alt="image">
-        <input type="file" name="image">
+        <input type="file" name="selected_image">
     </div>
         
     <div class="form-group">
