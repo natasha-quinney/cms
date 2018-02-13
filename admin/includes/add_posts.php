@@ -21,6 +21,7 @@ insert_posts();
     </div>
     
      <div class="form-group">
+      <label for="post_category">Post Category</label><br>
        <select name="post_category" id="">
            
            <?php
@@ -42,8 +43,12 @@ insert_posts();
     </div>
        
         <div class="form-group">
-       <label for="post_status">Post Status</label>
-        <input type="text" class="form-control" name="post_status">
+       <label for="post_status">Post Status</label><br>
+       <select name="post_status" id="">
+            <option value='draft'>Draft</option>
+            <option value='published'>Published</option>
+       </select>
+<!--        <input type="text" class="form-control" name="post_status">-->
     </div>
     
     <div class="form-group">

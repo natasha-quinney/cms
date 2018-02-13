@@ -77,6 +77,8 @@
                         $comment_title = $_POST['comment_title'];
                         $comment_content = $_POST['comment_content'];
                         
+                        if(!empty($comment_author) && !empty($comment_email) && !empty($comment_title) && !empty($comment_content)){
+                            
                         $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_title, comment_content, comment_status, comment_date) ";
                         $query .= "VALUES ($selected_post_id, '{$comment_author}', '{$comment_email}', '{$comment_title}', '{$comment_content}', 'unapproved', now())";
                         
@@ -97,13 +99,12 @@
                                 die("QUERY FAILED " . mysqli_error($connection));
                                 
                             }
+                        } else {
+                            
+                            echo "<script>alert('Fields cannot be empty.')</script>";
+                        }
+                
                     }
-                
-                
-                
-                
-                
-                
                 
                 ?>
 

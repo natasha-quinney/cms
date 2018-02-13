@@ -91,7 +91,9 @@ function insert_categories(){
 
         confirm($create_post_query);
             
-            echo "<p class='bg-success'>Post created: " . " " . "<a href='../posts.php?source=view_post'>View All Posts</a></p><br> ";
+            $new_post_id = mysqli_insert_id($connection);
+            
+            echo "<p class='bg-success'>Post created: " . " " . "<a href='../post.php?p_id={$new_post_id}'>View Post</a>" . " or " . "<a href='./posts.php?source=view_post'>View All Posts</a></p><br> ";
 
         }       
     }
@@ -114,8 +116,9 @@ function insert_categories(){
             $post_comment_count = $row['post_comment_count'];
             $post_status = $row['post_status'];
             echo "<tr>";
+            echo "<td><input class='checkBoxes' type='checkbox' name='checkBoxArray[]' value='{$post_id}'></td>";
             echo "<td>{$post_id}</td>";
-            echo "<td>{$post_title}</td>";
+            echo "<td><a href='../post.php?p_id={$post_id}'>{$post_title}</a></td>";
             echo "<td>{$post_author}</td>";
             echo "<td>{$post_date}</td>";
 
