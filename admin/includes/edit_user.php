@@ -59,12 +59,12 @@
         
         $user_password = mysqli_real_escape_string($connection, $user_password); 
   
-        $user_password = crypt($user_password, $randSalt);
+        $encrypt_password = crypt($user_password, $randSalt);
             
 
             $query = "UPDATE users SET ";
             $query .= "user_name = '{$user_name}', ";
-            $query .= "user_password = '{$user_password}', ";
+            $query .= "user_password = '{$encrypt_password}', ";
             $query .= "user_firstname = '{$user_firstname}', ";
             $query .= "user_lastname = '{$user_lastname}', ";
             $query .= "user_email = '{$user_email}', ";
@@ -95,7 +95,7 @@
     <div class="form-group">
        <label for="user_role">Role</label>
        <select name = "user_role">
-        <option value="select"><?php echo $user_role?></option>
+        <option value="<?php echo $user_role?>"><?php echo $user_role?></option>
         <option value="admin">admin</option>
         <option value="hokage">hokage</option>
         <option value="jonin">jonin</option>

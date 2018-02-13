@@ -223,6 +223,6 @@ ul.alert-dropdown {
     color: #df8a13;
 }
 
-.bulkOptionsContainter {
+#bulkOptionsContainter {
     padding: 0px !important;
 }

@@ -45,7 +45,7 @@ function insert_categories(){
             echo "<tr>";
             echo "<td>{$cat_id}</td>";
             echo "<td>{$cat_title}</td>";
-            echo "<td><a href='categories.php?delete={$cat_id}'>Delete</a></td>";
+            echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete this?'); \" href='categories.php?delete={$cat_id}'>Delete</a></td>";
             echo "<td><a href='categories.php?update={$cat_id}'>Update</a></td>";
             echo "</tr>";
         }
@@ -138,7 +138,7 @@ function insert_categories(){
             echo "<td>{$post_tags}</td>";
             echo "<td>{$post_comment_count}</td>";
             echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
-            echo "<td><a href='posts.php?delete={$post_id}'>Delete</a></td>";
+            echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete this?'); \" href='posts.php?delete={$post_id}'>Delete</a></td>";
             echo "</tr>";
         }
     }
@@ -151,7 +151,7 @@ function insert_categories(){
             $del_post_id = $_GET['delete'];
             $query = "DELETE FROM posts WHERE post_id = {$del_post_id} ";
             $delete_admin_post_query = mysqli_query($connection,$query);
-        header("Location: posts.php");
+        header("Location: posts.php?source=view_post");
                                     }
     }
 
@@ -194,7 +194,7 @@ function insert_categories(){
             echo "<td>{$comment_date}</td>";
             echo "<td><a href='comments.php?approve={$comment_id}'>Approve</a></td>";
             echo "<td><a href='comments.php?unapprove={$comment_id}'>Unapprove</a></td>";
-            echo "<td><a href='comments.php?delete={$comment_id}'>Delete</a></td>";
+            echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete this?'); \" href='comments.php?delete={$comment_id}'>Delete</a></td>";
             echo "</tr>";
         }
     }
@@ -300,7 +300,7 @@ function insert_categories(){
 //            echo "<td><img width='100' src='../images/$user_image' alt='image'></td>";
             echo "<td>{$user_role}</td>";
             echo "<td><a href='users.php?source=edit_user&edit={$user_id}'>Edit</a></td>";
-            echo "<td><a href='users.php?delete={$user_id}'>Delete</a></td>";
+            echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete this?'); \" href='users.php?delete={$user_id}'>Delete</a></td>";
             echo "</tr>";
         }
     } 
