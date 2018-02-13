@@ -25,14 +25,13 @@
         if(isset($_POST['edit_user'])){
             
             $user_name = $_POST['user_name'];
-//            $user_password = $_POST['user_password'];
+            $user_password = $_POST['user_password'];
             $user_firstname = $_POST['user_firstname'];
             $user_lastname = $_POST['user_lastname'];
             $user_email = $_POST['user_email'];
 //            $user_image = $_FILES['image']['name'];
 //            $user_image_temp = $_FILES['image']['tmp_name'];
             $user_role = $_POST['user_role'];
-//            $randSalt = $_POST['randSalt'];
             
 //            move_uploaded_file($user_image_temp, "../images/$user_image" );
             
@@ -57,16 +56,20 @@
                     $user_role = $row['user_role'];
                 }
             }
+        
+        $user_password = mysqli_real_escape_string($connection, $user_password); 
+  
+        $user_password = crypt($user_password, $randSalt);
+            
 
             $query = "UPDATE users SET ";
             $query .= "user_name = '{$user_name}', ";
-//            $query .= "user_password = '{$user_password}', ";
+            $query .= "user_password = '{$user_password}', ";
             $query .= "user_firstname = '{$user_firstname}', ";
             $query .= "user_lastname = '{$user_lastname}', ";
             $query .= "user_email = '{$user_email}', ";
 //            $query .= "user_image = '{$user_image}', ";
             $query .= "user_role = '{$user_role}' ";
-//            $query .= "randSalt = "" ";
             $query .= "WHERE user_id = {$edit_user_id} ";
             
             $update_user_query = mysqli_query($connection, $query);
@@ -118,12 +121,10 @@
         <input value="<?php echo $user_email; ?>" type="email" class="form-control" name="user_email">
     </div>
     
-<!--
     <div class="form-group">
        <label for="user_password">Password</label>
-        <input type="password" class="form-control" name="user_password">
+        <input value="<?php echo $user_password; ?>" type="password" class="form-control" name="user_password">
     </div>
--->
     
 <!--
     <div class="form-group">

@@ -30,6 +30,8 @@
         
         }
         
+            $password = crypt($password, $db_user_password);
+        
         if($username !== $db_user_name && $password !== $db_user_password){
             
             header("Location: ../index.php");
@@ -46,6 +48,7 @@
         } else {
             
             header("Location: ../index.php");
+            
         }
     }
 

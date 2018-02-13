@@ -31,7 +31,7 @@
                     ?>
                    
                     <li>
-                        <a href="admin">admin</a>
+                        <a href="admin">Admin</a>
                     </li>
                     
                     <?php 
@@ -49,6 +49,10 @@
 
                     
                     ?>
+                    
+                    <li>
+                        <a href="registration.php">Registration</a>
+                    </li>
 <!--
                     <li>
                         <a href="#">Services</a>
