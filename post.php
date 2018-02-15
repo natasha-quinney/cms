@@ -18,7 +18,14 @@
                     
                     $selected_post_id = $_GET['p_id'];
                     
-                }
+                    $count_post_views = "UPDATE posts SET post_views_count = post_views_count + 1 WHERE post_id = $selected_post_id";
+                    $count_post_views_query = mysqli_query($connection, $count_post_views);
+                    
+                    if(!$count_post_views_query){
+
+                        die("QUERY FAILED " . mysqli_error($connection));
+                    }
+
                 
                     $query = "SELECT * FROM posts WHERE post_id = $selected_post_id";
                     $select_all_posts_query = mysqli_query($connection,$query);
@@ -61,7 +68,10 @@
                         
                 <?php 
                     }
-                
+                    } else {
+                        
+                        header("Location: index.php");
+                    }
                 ?>
 
                 <!-- Blog Comments -->

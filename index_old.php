@@ -13,41 +13,7 @@
             <div class="col-md-8">
                 
                 <?php 
-                
-                $posts_per_page = 5;
-                
-                if(isset($_GET['page'])){
-                    
-                    $page_number = $_GET['page'];
-                    
-                } else {
-                    
-                    $page_number = "";
-                    
-                }
-                
-                if($page_number == "" || $page_number == 1){
-                    
-                    $page_1 = 0;
-//                    $page_2 = 5;
-                        
-                } else {
-                    
-                    $page_1 = ($page_number * $posts_per_page)-$posts_per_page;
-//                    $page_2 = $page_1 + 5;
-                }
-                
-                //FIND NUMBER OF ACTIVE POSTS AND CALCULATE NUMBER OF PAGES REQUIRED    
-                $query = "SELECT * FROM posts WHERE post_status = 'published'";
-                
-                $count_posts_query = mysqli_query($connection, $query);
-                $post_count = mysqli_num_rows($count_posts_query);
-                
-                $post_count = ceil($post_count / $posts_per_page);
-                
-                
-                    //FIND ALL ACTIVE POSTS AND LIMIT TO 5 POSTS PER PAGE
-                    $query = "SELECT * FROM posts WHERE post_status = 'published' LIMIT $page_1, $posts_per_page ";
+                    $query = "SELECT * FROM posts WHERE post_status = 'published' ";
                     $select_all_posts_query = mysqli_query($connection,$query);
                     
                     while($row = mysqli_fetch_assoc($select_all_posts_query)){
@@ -108,25 +74,5 @@
         <!-- /.row -->
 
         <hr>
-        
-        <ul class="pager">
-            
-            <?php
-            
-            for($i=1; $i <=$post_count; $i++){
-                
-                if($i == $page_number){
-                    
-                  echo "<li><a class='active_link' href='index.php?page={$i}'>{$i}</a></li>";
-                    
-                } else {
-                
-                echo "<li><a href='index.php?page={$i}'>{$i}</a></li>";
-                    
-                }
-            }
-            ?>
-            
-            </ul>
 
 <?php include "includes/footer.php"; ?>
